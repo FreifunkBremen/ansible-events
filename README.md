@@ -2,7 +2,7 @@
 
 ## Commands
 
-## Ping
+### Ping
 check which nodes are up by ssh
 ```
 ansible -m sh_ping all
@@ -35,3 +35,8 @@ update settings on some node (which starts with _ac-mesh_)
 ansible-playbook playbooks/nodes.yml --tags hostname --limit "ac-mesh*"
 ```
 
+### Respondd restart
+check if respondd is running (and restart it)
+```
+ansible-playbook playbooks/respondd-restart.yml
+```
