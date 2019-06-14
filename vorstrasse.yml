@@ -1,0 +1,48 @@
+---
+# wdr3600
+#   txpower 5Ghz max 19
+#
+# archer
+#   txpower 5Ghz max 20
+#
+nodes:
+  vars:
+    radio24_mesh_disabled: 1
+    radio5_mesh_disabled: 1
+    radio24_channel: 6
+    radio5_channel: 44
+    radio24_txpower: 4
+    radio5_txpower: 12
+    node_name_suffix: "VorStrasse"
+    owner: "bremen.freifunk.net"
+    vpn:
+      - { name: vpn01, enabled: 0 }
+      - { name: vpn02, enabled: 0 }
+      - { name: vpn03, enabled: 0 }
+      - { name: vpn05, enabled: 1 }
+      - { name: vpn06, enabled: 0 }
+  hosts:
+    ac-mesh-7715:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:feab:7715
+      node_name: "ac-mesh-7715"
+    ac-mesh-773d:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:773d
+      node_name: "ac-mesh-773d"
+    ac-mesh-7763:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:7763
+      node_name: "ac-mesh-7763"
+    ac-mesh-77a3:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:77a3
+      node_name: "ac-mesh-77a3"
+    ac-mesh-77c2:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:77c2
+      node_name: "ac-mesh-77c2"
+    ac-mesh-77dc:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:77dc
+      node_name: "ac-mesh-77dc"
+    ac-mesh-7816:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:7816
+      node_name: "ac-mesh-7816"
+    ac-mesh-7863:
+      ansible_ssh_host: 2a06:8782:ffbb:1337:f29f:c2ff:fea9:7863
+      node_name: "ac-mesh-7863"

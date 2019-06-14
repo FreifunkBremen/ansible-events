@@ -1,0 +1,12 @@
+---
+- name: update hostname
+  raw: "echo $(uci get system.@system[0].hostname) > /proc/sys/kernel/hostname"
+
+- name: restart wifi
+  raw: wifi
+
+- name: restart fastd
+  raw: /etc/init.d/fastd restart
+
+- name: restart log
+  raw: /etc/init.d/log restart
