@@ -2,6 +2,14 @@
 
 ## Commands
 
+## Ping
+check which nodes are up by ssh
+```
+ansible -m sh_ping -i vorstrasse.yml all
+```
+
+### Settings
+
 update settings on every node
 ```
 ansible-playbook playbooks/nodes.yml -i vorstrasse.yml
