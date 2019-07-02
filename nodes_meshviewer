@@ -1,0 +1,45 @@
+#!/usr/bin/env python2
+#
+# Dynamic inventory script for ansible
+#
+# $ ansible nodes -m sh_ping -i nodes_meshviewer
+#
+
+
+import urllib
+import json
+import os
+import argparse
+
+response = urllib.urlopen("https://events.ffhb.de/data/meshviewer.json")
+body     = response.read()
+data     = json.loads(body)
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--list', action = 'store_true')
+parser.add_argument('--host', action = 'store')
+args = parser.parse_args()
+
+inventory = {'_meta': {'hostvars': {}}}
+
+if args.list:
+	inventory["nodes"] = {"hosts":[]}
+
+	for node in data['nodes']:
+                if not node["is_online"]:
+                   continue
+		nodeid = node["node_id"]
+		if "breminale" not in node['firmware']['release']:
+			continue
+		inventory["nodes"]["hosts"].append(nodeid)
+		inventory["_meta"]["hostvars"][nodeid] = { }
+		for address in node["addresses"]:
+			if "2a06:8782:ffbb:" in address:
+				inventory["_meta"]["hostvars"][nodeid]["ansible_ssh_host"] = address
+elif args.host:
+	for node in data['nodes']:
+		if node["node_id"] == args.host:
+			inventory = node
+
+print json.dumps(inventory)
