@@ -1,0 +1,6 @@
+---
+- name: Fetch gluon facts
+  gluon: read=facts
+
+- include: upgrade.yml
+  when: 'gluon_release in firmware_old'

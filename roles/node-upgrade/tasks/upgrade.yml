@@ -1,0 +1,9 @@
+---
+- name: Upload firmware
+  raw: >
+    wget -q
+    "{{firmware_path}}/gluon-ffhb-{{firmware_new}}-{{ image_name }}-sysupgrade.bin"
+    -O /tmp/firmware.bin
+
+- name: Upgrade firmware
+  raw: sysupgrade -n /tmp/firmware.bin

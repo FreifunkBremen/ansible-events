@@ -1,0 +1,8 @@
+---
+firmware_old:
+- "2018.2~breminale2019-68"
+- "2018.2~breminale2019-69"
+- "2018.2~breminale2019-70"
+
+firmware_new: 2018.2~breminale2019-71
+firmware_path: http://events.bremen.freifunk.net/firmware/sysupgrade

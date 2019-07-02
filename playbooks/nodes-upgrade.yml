@@ -1,0 +1,12 @@
+#
+# mirror with:
+# wget -m http://tmp.jplitza.de/breminale/factory/
+#
+# run with:
+# ansible-playbook playbooks/nodes-upgrade.yml -i nodes -vv -e "firmware_path=/path/to/tmp.jplitza.de/breminale/"
+#
+---
+- hosts: nodes
+  gather_facts: no
+  roles:
+  - node-upgrade
