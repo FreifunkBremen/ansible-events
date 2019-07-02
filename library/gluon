@@ -1,0 +1,23 @@
+#!/usr/bin/lua
+
+-- read input
+local json    = require 'jsonc'
+local platform_info = require('platform_info')
+local utsname   = require 'posix.sys.utsname'
+local util = require 'gluon.util'
+
+fail = function (msg)
+  print(json.stringify({failed=true, msg=msg}))
+  os.exit(1)
+end
+
+
+
+facts = {}
+facts["gluon_release"] = util.trim(util.readfile("/lib/gluon/release"))
+facts["image_name"]    = platform_info.get_image_name()
+facts["board_name"]    = platform_info.get_board_name()
+facts["uname"]         = utsname.uname()
+
+print(json.stringify({ansible_facts=facts}))
+
