@@ -4,6 +4,7 @@
   raw: "pgrep respondd"
   register: pgrep
   ignore_errors: yes
+  changed_when: false
 
 - name: restart
   raw: /etc/init.d/gluon-respondd restart

@@ -44,6 +44,15 @@ grp.addNode("788a2026d3ee", # per PoE-Passthrough an Nanobeam (nicht an der Box!
         geo_longitude=8.815935552)
 
 
+# Box B0002 on Gastro
+grp = inv.newGroup("SchleuseBackstage",
+        geo_latitude=53.070058,
+        geo_longitude=8.815522)
+grp.addNode("18d6c7e8caa2") # N0069
+grp.addNode("d46e0e3605a0") # N0059
+#grp.addNode("788a2026d2c6", # RAppelt
+#        node_name="b2-ac-mesh")
+
 # added by ollibaba 2022-07-11:
 # Box B0026
 grp = inv.newGroup("B0026",
@@ -68,14 +77,6 @@ grp.addNode("ec086b5af0cf") # N0067
 grp.addNode("a42bb0deee4b") # N0031
 grp.addNode("788a2026d62a", # RAppelt
         node_name="b9-ac-mesh")
-
-# Box B0002
-grp = inv.newGroup("B0002",
-        ignore=True)
-grp.addNode("18d6c7e8caa2") # N0069
-grp.addNode("d46e0e3605a0") # N0059
-grp.addNode("788a2026d2c6", # RAppelt
-        node_name="b2-ac-mesh")
 
 # Box B0025
 grp = inv.newGroup("B0025",

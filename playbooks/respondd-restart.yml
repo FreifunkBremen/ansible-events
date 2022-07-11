@@ -1,6 +1,6 @@
 # ansible-playbook playbooks/nodes.yml -i events
 ---
-- hosts: nodes
+- hosts: all
   gather_facts: no
   roles:
   - respondd-restart
