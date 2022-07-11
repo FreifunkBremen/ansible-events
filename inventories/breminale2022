@@ -25,14 +25,14 @@ grp = inv.newGroup("Bauwagen",
 grp.addNode("d46e0e28f8cd")
 grp.addNode("d46e0e366a3e")
 
-# Schleuse
+# Schleuse connected on NanoBeam
 grp = inv.newGroup("Schleuse",
         geo_latitude=53.069850682,
         geo_longitude=8.815345466)
 grp.addNode("d46e0e369255")
 grp.addNode("60e32788cf3a")
 
-# Gastro
+# Gastro connected on NanoBeam
 grp = inv.newGroup("Gastro",
         geo_latitude=53.07007038965821,
         geo_longitude=8.815957764163613)
@@ -44,16 +44,42 @@ grp.addNode("788a2026d3ee", # per PoE-Passthrough an Nanobeam (nicht an der Box!
         geo_longitude=8.815935552)
 
 
-# Box B0002 on Gastro
+# Box B0002 connected on Gastro
 grp = inv.newGroup("SchleuseBackstage",
         geo_latitude=53.070058,
         geo_longitude=8.815522)
-grp.addNode("18d6c7e8caa2") # N0069
 grp.addNode("d46e0e3605a0") # N0059
-#grp.addNode("788a2026d2c6", # RAppelt
+grp.addNode("a42bb0deee4b") # N0031
+
+# Box B0009 connected on SchleuseBackstage
+grp = inv.newGroup("SchleuseKlo",
+        geo_latitude=53.070133,
+	geo_longitude=8.814959)
+grp.addNode("ec086b5af0cf") # N0067
+grp.addNode("d46e0e36845a") # N0054
+grp.addNode("788a2026d62a", # RAppelt
+        node_name="SchleuseKlo-ac-mesh")
+
+#--------------
+# on the Road:
+#--------------
+
+
+#---------------
+# Lost:
+#---------------
+
+#---------------
+# im Bauwagen:
+#---------------
+
+# Defekt ?
+
+# Einzeln
+# grp.addNode("18d6c7e8caa2") # N0069
+# grp.addNode("788a2026d2c6", # RAppelt
 #        node_name="b2-ac-mesh")
 
-# added by ollibaba 2022-07-11:
 # Box B0026
 grp = inv.newGroup("B0026",
         ignore=True)
@@ -65,18 +91,9 @@ grp.addNode("788a2026d581", # RAppelt
 # Box B0007
 grp = inv.newGroup("B0007",
         ignore=True)
-grp.addNode("d46e0e36845a") # N0054
 grp.addNode("60e327a65b09") # N0074
 grp.addNode("788a2026d548", # RAppelt
         node_name="b7-ac-mesh")
-
-# Box B0009
-grp = inv.newGroup("B0009",
-        ignore=True)
-grp.addNode("ec086b5af0cf") # N0067
-grp.addNode("a42bb0deee4b") # N0031
-grp.addNode("788a2026d62a", # RAppelt
-        node_name="b9-ac-mesh")
 
 # Box B0025
 grp = inv.newGroup("B0025",
