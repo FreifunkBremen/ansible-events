@@ -1,9 +1,19 @@
 ---
+- name: Upload firmware per SCP
+  when: "firmware_scp"
+  delegate_to: 127.0.0.1
+  raw: >
+    scp 
+    "{{ firmware_path }}/gluon-ffhb-{{ firmware_new }}-{{ image_name }}-sysupgrade.bin"
+    "root@[{{ hostvars[inventory_hostname]['ansible_ssh_host'] }}]:/tmp/firmware.bin"
+
 - name: Upload firmware
+  when: "not firmware_scp"
   raw: >
     wget -q
-    "{{firmware_path}}/gluon-ffhb-{{firmware_new}}-{{ image_name }}-sysupgrade.bin"
+    "{{ firmware_path }}/gluon-ffhb-{{ firmware_new }}-{{ image_name }}-sysupgrade.bin"
     -O /tmp/firmware.bin
 
 - name: Upgrade firmware
   raw: sysupgrade -n /tmp/firmware.bin
+  failed_when: false

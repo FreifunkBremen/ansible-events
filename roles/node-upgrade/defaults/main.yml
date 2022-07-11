@@ -1,8 +1,10 @@
 ---
 firmware_old:
-- "2018.2~breminale2019-68"
-- "2018.2~breminale2019-69"
-- "2018.2~breminale2019-70"
+- "breminale2022-13-g347e8fd~HEAD77"
+- "breminale2022-14-gf938525~HEAD78"
 
-firmware_new: 2018.2~breminale2019-71
-firmware_path: http://events.bremen.freifunk.net/firmware/sysupgrade
+firmware_new: "breminale2022-build82"
+
+firmware_scp: True
+firmware_path: "/home/ffhb/firmware/"
+# firmware_path: http://events.bremen.freifunk.net/firmware/sysupgrade

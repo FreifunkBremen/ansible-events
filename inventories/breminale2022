@@ -1,0 +1,96 @@
+#!/bin/env python3
+
+from sys import path
+path.append("lib")
+
+import nodes
+
+inv = nodes.Inventory(
+        ##
+        # default
+        ##
+        ipv6_subnet="fd00:42:100::/64",
+        ##
+        # to group_vars
+        ##
+        node_name_suffix="breminale",
+        syslog_ip="fd00:42:100::10"
+        #- syslog_port="1514"
+        )
+
+# Bauwagen
+grp = inv.newGroup("Bauwagen",
+        geo_latitude=53.069581438,
+        geo_longitude=8.818759033)
+grp.addNode("d46e0e28f8cd")
+grp.addNode("d46e0e366a3e")
+
+# Schleuse
+grp = inv.newGroup("Schleuse",
+        geo_latitude=53.069850682,
+        geo_longitude=8.815345466)
+grp.addNode("d46e0e369255")
+grp.addNode("60e32788cf3a")
+
+# Gastro
+grp = inv.newGroup("Gastro",
+        geo_latitude=53.07007038965821,
+        geo_longitude=8.815957764163613)
+grp.addNode("d46e0e3651cc")
+grp.addNode("18d6c7e8a67e")
+grp.addNode("788a2026d3ee", # per PoE-Passthrough an Nanobeam (nicht an der Box!)
+        node_name="Gastro-ac-mesh",
+        geo_latitude=53.069863574,
+        geo_longitude=8.815935552)
+
+
+# added by ollibaba 2022-07-11:
+# Box B0026
+grp = inv.newGroup("B0026",
+        ignore=True)
+grp.addNode("f4f26d7051f9") # N0056
+grp.addNode("d46e0e36127b") # N0045
+grp.addNode("788a2026d581", # RAppelt
+        node_name="b26-ac-mesh")
+
+# Box B0007
+grp = inv.newGroup("B0007",
+        ignore=True)
+grp.addNode("d46e0e36845a") # N0054
+grp.addNode("60e327a65b09") # N0074
+grp.addNode("788a2026d548", # RAppelt
+        node_name="b7-ac-mesh")
+
+# Box B0009
+grp = inv.newGroup("B0009",
+        ignore=True)
+grp.addNode("ec086b5af0cf") # N0067
+grp.addNode("a42bb0deee4b") # N0031
+grp.addNode("788a2026d62a", # RAppelt
+        node_name="b9-ac-mesh")
+
+# Box B0002
+grp = inv.newGroup("B0002",
+        ignore=True)
+grp.addNode("18d6c7e8caa2") # N0069
+grp.addNode("d46e0e3605a0") # N0059
+grp.addNode("788a2026d2c6", # RAppelt
+        node_name="b2-ac-mesh")
+
+# Box B0025
+grp = inv.newGroup("B0025",
+        ignore=True)
+grp.addNode("a42bb0deaa14") # N0044
+grp.addNode("d46e0e291412") # N0050
+grp.addNode("f09fc2339b7b", # N0098
+        node_name="b25-ac-mesh")
+
+# Box B0001
+grp = inv.newGroup("B0001",
+        ignore=True)
+grp.addNode("18d6c7f9c174") # N0060
+grp.addNode("60e32788e32f") # N0055
+grp.addNode("f09fc2a97763", # N0106
+        node_name="b01-ac-mesh")
+
+print(inv.json_dump())

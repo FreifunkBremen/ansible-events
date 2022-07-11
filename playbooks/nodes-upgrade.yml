@@ -6,7 +6,7 @@
 # ansible-playbook playbooks/nodes-upgrade.yml -i nodes -vv -e "firmware_path=/path/to/tmp.jplitza.de/breminale/"
 #
 ---
-- hosts: nodes
+- hosts: all
   gather_facts: no
   roles:
   - node-upgrade
