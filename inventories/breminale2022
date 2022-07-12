@@ -14,28 +14,124 @@ inv = nodes.Inventory(
         # to group_vars
         ##
         node_name_suffix="breminale",
-        syslog_ip="fd00:42:100::10"
-        #- syslog_port="1514"
-        )
+        syslog="fd00:42:100::10",
+        syslog_port="1514",
+        # disabled: not part of breminale image
+        # radio24_mesh_disabled = 1,
+        # radio5_mesh_disabled = 1,
+        vpn = [],
+        radio24_client_disabled = 0,
+        radio5_client_disabled = 0,
+        radio24_txpower = 0,
+        radio5_txpower = 0,
+        radio24_channel = 5,
+        radio5_channel = 48,
+)
+
+####
+#
+# Flut
+#
+####
+
+
+# Box B0027
+grp = inv.newGroup("FlutBackstage2",
+        geo_latitude=53.06899,
+	geo_longitude=8.82028)
+grp.addNode("f4f26d9c9c79") # N0072
+grp.addNode("18d6c7e89f5b") # N0040
+grp.addNode("788a2026d3ed",
+        node_name="FlutBackstage2-ac-mesh") # D3ED RAppelt
+
+
+# Flut-Zelt connected on NanoBeam-Flut
+grp = inv.newGroup("Flut",
+        geo_latitude=53.068989488,
+        geo_longitude=8.820484277)
+grp.addNode("ca6540353b6c",
+	# On NanoBeam (broken)
+	node_name="Flut-buehne-links-ac-mast",
+	geo_latitude=53.068997179,
+	geo_longitude=8.820373666)
+grp.addNode("60e3274fdac3",
+	node_name="Flut-buehne") # N0034
+grp.addNode("f09fc2a977c2",
+	node_name="flut-buehne-rechts-ac-mesh",
+	geo_latitude=53.068998783,
+	geo_longitude=8.820542756)
+
+# Box B0014
+grp = inv.newGroup("FlutBackstage",
+        geo_latitude=53.069013877,
+	geo_longitude=8.820739243)
+grp.addNode("d46e0e3601ec") # N0041
+grp.addNode("18d6c7867735") # N0049
+grp.addNode("f09fc2a97715",
+	node_name="NebenFlut-ac-mesh") # N0103 // 7715
+
+####
+#
+# Bauwagen
+#
+####
+
+
+# Kueche / Klo conntect on Bauwagen (wunderschoen ...)
+grp = inv.newGroup("Kueche",
+	geo_latitude=53.069418364,
+	geo_longitude=8.819662999)
+grp.addNode("788a2026d6d2",
+	node_name="Kueche-ac-mesh") # D6D2 Ralf Appe1l
 
 # Bauwagen
 grp = inv.newGroup("Bauwagen",
         geo_latitude=53.069581438,
         geo_longitude=8.818759033)
-grp.addNode("d46e0e28f8cd")
 grp.addNode("d46e0e366a3e")
+grp.addNode("d46e0e28f8cd")
 
-# Schleuse connected on NanoBeam
-grp = inv.newGroup("Schleuse",
-        geo_latitude=53.069850682,
-        geo_longitude=8.815345466)
-grp.addNode("d46e0e369255")
-grp.addNode("60e32788cf3a")
+# MitteLichtmast
+grp = inv.newGroup("MitteLichtmast",
+	geo_latitude=53.069336584,
+	geo_longitude=8.818810880)
+grp.addNode("788a2026d2c6",
+       node_name="MitteLichtmast-ac-mesh") # D2C6RAppelt
 
-# Gastro connected on NanoBeam
+####
+#
+# Radio Bremen
+#
+####
+
+# Box B0025
+grp = inv.newGroup("RadioBremen",
+	geo_latitude=53.069273389,
+	geo_longitude=8.818004588)
+grp.addNode("a42bb0deaa14") # N0044
+grp.addNode("d46e0e291412") # N0050
+grp.addNode("f09fc2339b7b", # N0098
+        node_name="RadioBremen-rechts",
+	geo_latitude=53.069358850,
+	geo_longitude=8.817824544)
+grp.addNode("f492bfc37600",
+        # On NanoBeam RadioBremen
+        # Eigentum Segelverein Weser e.V.
+        node_name="RadioBremen-links",
+	geo_latitude=53.069249233,
+	geo_longitude=8.818329300)
+
+####
+#
+# Schleuse
+#
+####
+
+
+# Gastro connected on NanoBeam-Gastro
 grp = inv.newGroup("Gastro",
-        geo_latitude=53.07007038965821,
-        geo_longitude=8.815957764163613)
+        geo_latitude=53.070133,
+        geo_longitude=8.815791584)
 grp.addNode("d46e0e3651cc")
 grp.addNode("18d6c7e8a67e")
 grp.addNode("788a2026d3ee", # per PoE-Passthrough an Nanobeam (nicht an der Box!)
@@ -43,11 +139,18 @@ grp.addNode("788a2026d3ee", # per PoE-Passthrough an Nanobeam (nicht an der Box!
         geo_latitude=53.069863574,
         geo_longitude=8.815935552)
 
+# Boje/Bombe
+grp = inv.newGroup("Schleuse-Boje",
+      geo_latitude=53.069920725,
+      geo_longitude=8.815518867)
+grp.addNode("18e829c07b2f") # 0 || 3
+grp.addNode("18e829c083c7") # 2
+grp.addNode("788a2026d505") # D505 RAppelt
 
 # Box B0002 connected on Gastro
 grp = inv.newGroup("SchleuseBackstage",
-        geo_latitude=53.070058,
-        geo_longitude=8.815522)
+        geo_latitude=53.070072799,
+        geo_longitude=8.815461604)
 grp.addNode("d46e0e3605a0") # N0059
 grp.addNode("a42bb0deee4b") # N0031
 
@@ -60,25 +163,78 @@ grp.addNode("d46e0e36845a") # N0054
 grp.addNode("788a2026d62a", # RAppelt
         node_name="SchleuseKlo-ac-mesh")
 
+
+##
+#
+# Kunsttunnel
+#
+##
+
+# Box B0010 connected on NanoBeam-Laterne
+grp = inv.newGroup("Kunsttunnel",
+        geo_latitude=53.070781824,
+        geo_longitude=8.812967660)
+grp.addNode("d46e0e369255")
+grp.addNode("60e32788cf3a")
+
+# Box B0007
+grp = inv.newGroup("3MeterBretter",
+        geo_latitude=53.070794881,
+        geo_longitude=8.812479189)
+grp.addNode("18d6c7e8caa2") # N0069
+grp.addNode("60e327a65b09") # N0074
+
+grp = inv.newGroup("MuchasMas",
+        geo_latitude=53.07112,
+        geo_longitude=8.81146)
+grp.addNode("f09fc2a97863") # 7863
+
+
+
 #--------------
 # on the Road:
 #--------------
+grp = inv.newGroup("DirtyOnRoad",
+        ignore=True)
+
+
 
 
 #---------------
 # Lost:
 #---------------
+grp = inv.newGroup("DirtyLost",
+        ignore=True)
+
+# MitteMast
+# B0023 in grüne Box etwas weiter weg
+grp.addNode("a42bb0d941da") # N0063
+
+
+
 
 #---------------
 # im Bauwagen:
 #---------------
 
+grp = inv.newGroup("DirtyImBauwagen",
+        ignore=True)
+
+
 # Defekt ?
+grp.addNode("f8e829c07c9e")
+grp.addNode("f09fc2a97759")
 
 # Einzeln
-# grp.addNode("18d6c7e8caa2") # N0069
-# grp.addNode("788a2026d2c6", # RAppelt
-#        node_name="b2-ac-mesh")
+# -- archer
+grp.addNode("18d6c7e8caa2"), # N0069
+
+# -- ac mesh
+grp.addNode("788a2026d6d2"), # D6D2 in progress
+grp.addNode("f09fc2a977c2"), # 77C2
+
+
+# Boxen
 
 # Box B0026
 grp = inv.newGroup("B0026",
@@ -86,29 +242,29 @@ grp = inv.newGroup("B0026",
 grp.addNode("f4f26d7051f9") # N0056
 grp.addNode("d46e0e36127b") # N0045
 grp.addNode("788a2026d581", # RAppelt
-        node_name="b26-ac-mesh")
-
-# Box B0007
-grp = inv.newGroup("B0007",
-        ignore=True)
-grp.addNode("60e327a65b09") # N0074
-grp.addNode("788a2026d548", # RAppelt
-        node_name="b7-ac-mesh")
-
-# Box B0025
-grp = inv.newGroup("B0025",
-        ignore=True)
-grp.addNode("a42bb0deaa14") # N0044
-grp.addNode("d46e0e291412") # N0050
-grp.addNode("f09fc2339b7b", # N0098
-        node_name="b25-ac-mesh")
+            node_name="b26-ac-mesh")
 
 # Box B0001
 grp = inv.newGroup("B0001",
         ignore=True)
 grp.addNode("18d6c7f9c174") # N0060
 grp.addNode("60e32788e32f") # N0055
-grp.addNode("f09fc2a97763", # N0106
+grp.addNode("f09fc2a97763", # N0106 / 7763
         node_name="b01-ac-mesh")
+
+# Box B0015
+grp = inv.newGroup("B0015",
+        ignore=True)
+grp.addNode("18d6c7fcdd22") # N0051
+grp.addNode("f09fc2a977dc") # 77DC
+
+# Box B0038
+grp = inv.newGroup("B0038",
+        ignore=True)
+grp.addNode("18d6c7f9e1fc") # N0052
+grp.addNode("60e327add40c") # N0062
+grp.addNode("788a2026d548"), # D548 RAppelt
+
+
 
 print(inv.json_dump())
