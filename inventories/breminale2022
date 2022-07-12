@@ -49,11 +49,12 @@ grp.addNode("788a2026d3ed",
 grp = inv.newGroup("Flut",
         geo_latitude=53.068989488,
         geo_longitude=8.820484277)
-grp.addNode("ca6540353b6c",
-	# On NanoBeam (broken)
-	node_name="Flut-buehne-links-ac-mast",
-	geo_latitude=53.068997179,
-	geo_longitude=8.820373666)
+# Broken - lets disable
+#grp.addNode("ca6540353b6c",
+#	# On NanoBeam (broken)
+#	node_name="Flut-buehne-links-ac-mast",
+#	geo_latitude=53.068997179,
+#	geo_longitude=8.820373666)
 grp.addNode("60e3274fdac3",
 	node_name="Flut-buehne") # N0034
 grp.addNode("f09fc2a977c2",
