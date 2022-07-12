@@ -117,6 +117,8 @@
     - radio24
     - mesh
     - wifi
+    - txpower
+    - channel
     - restart
   when: radio24_mesh_disabled is defined
 
@@ -132,6 +134,8 @@
     - radio24
     - client
     - wifi
+    - txpower
+    - channel
     - restart
   when: radio24_client_disabled is defined
 
@@ -178,6 +182,8 @@
     - radio5
     - mesh
     - wifi
+    - txpower
+    - channel
     - restart
   when: radio5_mesh_disabled is defined
 
@@ -193,6 +199,8 @@
     - radio5
     - client
     - wifi
+    - txpower
+    - channel
     - restart
   when: radio5_client_disabled is defined
 
