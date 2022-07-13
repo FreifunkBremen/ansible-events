@@ -28,7 +28,13 @@ class Inventory:
             radius=0.00001,
 
             radio24_channel_auto_enabled=False,
-            radio24_channel_auto_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+            radio24_channel_auto_list = [1, 
+                # 2, 3, 4, 
+                5, 
+                # 6, 7, 8, 
+                9, 
+                # 10, 11, 12,
+                13],
 
             radio5_channel_auto_enabled=False,
             radio5_channel_auto_list = [
@@ -90,16 +96,21 @@ class Inventory:
           if "radio5_channel" in self._inventory_vars:
             channel_default = self._inventory_vars["radio5_channel"]
 
+
         ##
         # Generic Part
         #
-        # index by host_i + group_i
-        # to a little bit more random
+        # TODO Intelligence to make somethink nice over all
         ##
         if not channel_auto_enabled:
             return channel_default
+
         channel_count = len(channel_auto_list)
-        channel_index = ((host_i+group_i) % channel_count)
+
+        channel_index = host_i % channel_count
+        if band == 5:
+          channel_index = (group_i * 10 + host_i) % channel_count
+
         return channel_auto_list[channel_index]
 
 

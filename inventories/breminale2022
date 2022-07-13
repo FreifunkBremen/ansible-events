@@ -10,22 +10,30 @@ inv = nodes.Inventory(
         # default
         ##
         ipv6_subnet="fd00:42:100::/64",
+        radius=0.00003,
         ##
         # to hostvars
         ##
         node_name_suffix="breminale",
         syslog="fd00:42:100::10",
         syslog_port="1514",
+        vpn = [],
+        ## WIFI
+        radio24_txpower = 0,
+        radio5_txpower = 0,
+
+        radio24_channel = 5,
+        radio5_channel = 48,
+
+        radio24_channel_auto_enabled=True,
+        radio5_channel_auto_enabled=True,
+
+        ## SSIDs
+        radio24_client_disabled = 0,
+        radio5_client_disabled = 0,
         # disabled: not part of breminale image
         # radio24_mesh_disabled = 1,
         # radio5_mesh_disabled = 1,
-        vpn = [],
-        radio24_client_disabled = 0,
-        radio5_client_disabled = 0,
-        radio24_txpower = 0,
-        radio5_txpower = 0,
-        radio24_channel = 5,
-        radio5_channel = 48,
 )
 
 ####
@@ -33,6 +41,10 @@ inv = nodes.Inventory(
 # Flut
 #
 ####
+grp = inv.newGroup("Neuland",
+        geo_latitude=53.068903733,
+	geo_longitude=8.821324110)
+grp.addNode("f09fc2a977dc") # 77DC
 
 
 # Box B0027
@@ -50,11 +62,10 @@ grp = inv.newGroup("Flut",
         geo_latitude=53.068989488,
         geo_longitude=8.820484277)
 # Broken - lets disable
-#grp.addNode("ca6540353b6c",
-#	# On NanoBeam (broken)
-#	node_name="Flut-buehne-links-ac-mast",
-#	geo_latitude=53.068997179,
-#	geo_longitude=8.820373666)
+grp.addNode("788a2026d581", # RAppelt
+	node_name="Flut-buehne-links-ac-mast",
+	geo_latitude=53.068997179,
+	geo_longitude=8.820373666)
 grp.addNode("60e3274fdac3",
 	node_name="Flut-buehne") # N0034
 grp.addNode("f09fc2a977c2",
@@ -180,6 +191,22 @@ grp.addNode("788a2026d62a", # RAppelt
 #
 ##
 
+# Box 0038
+grp = inv.newGroup("Pappinale",
+        geo_latitude=53.070358881,
+        geo_longitude=8.814119824)
+grp.addNode("18d6c7f9e1fc") # N0052
+grp.addNode("60e327add40c") # N0062
+grp.addNode("f09fc2ab7759",
+        node_name="Pappinale-ac-mesh")
+
+# Box B0015
+grp = inv.newGroup("B0015",
+        geo_latitude=53.070621717,
+        geo_longitude=8.813565873)
+grp.addNode("18d6c7fcdd22") # N0051
+grp.addNode("a42bb0d941da") # N0063
+
 # Box B0010 connected on NanoBeam-Laterne
 grp = inv.newGroup("Kunsttunnel",
         geo_latitude=53.070781824,
@@ -193,12 +220,21 @@ grp = inv.newGroup("3MeterBretter",
         geo_longitude=8.812479189)
 grp.addNode("18d6c7e8caa2") # N0069
 grp.addNode("60e327a65b09") # N0074
+grp.addNode("f09fc2a97763", # N0106 / 7763
+        node_name="3MBretter-ac-mesh-rechts",
+        geo_latitude=53.070817629,
+        geo_longitude=8.812377603)
 
+# Box B0001
 grp = inv.newGroup("MuchasMas",
         geo_latitude=53.07112,
         geo_longitude=8.81146)
-grp.addNode("f09fc2a97863") # 7863
 
+grp.addNode("18d6c7f9c174") # N0060
+grp.addNode("60e32788e32f", # N0055
+        node_name="MuchasMas-ac-mesh-1") # 7863
+grp.addNode("788a2026d548",
+        node_name="MuchasMas-ac-mesh-2") # D548 RAppelt
 
 
 #--------------
@@ -207,10 +243,6 @@ grp.addNode("f09fc2a97863") # 7863
 grp = inv.newGroup("DirtyOnRoad",
         ignore=False)
 
-grp.addNode("f09fc2a977dc") # 77DC
-grp.addNode("788a2026d581", # RAppelt
-            node_name="b26-ac-mesh")
-
 
 
 #---------------
@@ -218,10 +250,6 @@ grp.addNode("788a2026d581", # RAppelt
 #---------------
 grp = inv.newGroup("DirtyLost",
         ignore=True)
-
-# MitteMast
-# B0023 in grüne Box etwas weiter weg
-grp.addNode("a42bb0d941da") # N0063
 
 
 
@@ -236,38 +264,14 @@ grp = inv.newGroup("DirtyImBauwagen",
 
 # Defekt ?
 grp.addNode("f8e829c07c9e")
-grp.addNode("f09fc2a97759")
+# von flut links
+grp.addNode("ca6540353b6c")
 
 # Einzeln
 # -- archer
-grp.addNode("18d6c7e8caa2"), # N0069
-
-# -- ac mesh
-grp.addNode("788a2026d6d2"), # D6D2 in progress
-grp.addNode("f09fc2a977c2"), # 77C2
 
 
 # Boxen
-
-# Box B0001
-grp = inv.newGroup("B0001",
-        ignore=True)
-grp.addNode("18d6c7f9c174") # N0060
-grp.addNode("60e32788e32f") # N0055
-grp.addNode("f09fc2a97763", # N0106 / 7763
-        node_name="b01-ac-mesh")
-
-# Box B0015
-grp = inv.newGroup("B0015",
-        ignore=True)
-grp.addNode("18d6c7fcdd22") # N0051
-
-# Box B0038
-grp = inv.newGroup("B0038",
-        ignore=True)
-grp.addNode("18d6c7f9e1fc") # N0052
-grp.addNode("60e327add40c") # N0062
-grp.addNode("788a2026d548"), # D548 RAppelt
 
 
 
