@@ -11,7 +11,7 @@ inv = nodes.Inventory(
         ##
         ipv6_subnet="fd00:42:100::/64",
         ##
-        # to group_vars
+        # to hostvars
         ##
         node_name_suffix="breminale",
         syslog="fd00:42:100::10",
@@ -122,6 +122,15 @@ grp.addNode("f492bfc37600",
 	geo_latitude=53.069249233,
 	geo_longitude=8.818329300)
 
+
+# Box B0026
+grp = inv.newGroup("Eis",
+    geo_latitude=53.069676061,
+    geo_longitude=8.816958976)
+
+grp.addNode("f4f26d7051f9") # N0056
+grp.addNode("d46e0e36127b") # N0045
+
 ####
 #
 # Schleuse
@@ -196,8 +205,11 @@ grp.addNode("f09fc2a97863") # 7863
 # on the Road:
 #--------------
 grp = inv.newGroup("DirtyOnRoad",
-        ignore=True)
+        ignore=False)
 
+grp.addNode("f09fc2a977dc") # 77DC
+grp.addNode("788a2026d581", # RAppelt
+            node_name="b26-ac-mesh")
 
 
 
@@ -237,14 +249,6 @@ grp.addNode("f09fc2a977c2"), # 77C2
 
 # Boxen
 
-# Box B0026
-grp = inv.newGroup("B0026",
-        ignore=True)
-grp.addNode("f4f26d7051f9") # N0056
-grp.addNode("d46e0e36127b") # N0045
-grp.addNode("788a2026d581", # RAppelt
-            node_name="b26-ac-mesh")
-
 # Box B0001
 grp = inv.newGroup("B0001",
         ignore=True)
@@ -257,7 +261,6 @@ grp.addNode("f09fc2a97763", # N0106 / 7763
 grp = inv.newGroup("B0015",
         ignore=True)
 grp.addNode("18d6c7fcdd22") # N0051
-grp.addNode("f09fc2a977dc") # 77DC
 
 # Box B0038
 grp = inv.newGroup("B0038",

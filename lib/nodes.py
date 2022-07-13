@@ -22,16 +22,48 @@ import math
 # }
 
 class Inventory:
-    groups = {}
 
-    def __init__(self, ipv6_subnet, radius=0.00001, **kwargs):
+    def __init__(self,
+            ipv6_subnet,
+            radius=0.00001,
+
+            radio24_channel_auto_enabled=False,
+            radio24_channel_auto_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+
+            radio5_channel_auto_enabled=False,
+            radio5_channel_auto_list = [
+                # 32, why?
+                36,40,44,48,
+                # dfs:
+                # 50, 52, 56, 60, 64, 68, 96, 100,...
+                149,
+                # 151, why?
+                153, 
+                # 155, why?
+                157, 
+                # 159, why? or channel 11 ?
+                161, 165, 169, 173
+                ],
+
+            **kwargs):
+        self._groups = {}
+
         self._ipv6_subnet = ipaddress.ip_network(ipv6_subnet, strict=False)
+
         self._radius = radius
+
+        self._radio24_channel_auto_enabled = radio24_channel_auto_enabled
+        self._radio24_channel_auto_list = radio24_channel_auto_list
+
+        self._radio5_channel_auto_enabled = radio5_channel_auto_enabled
+        self._radio5_channel_auto_list = radio5_channel_auto_list
+        
         self._inventory_vars = kwargs
 
     def newGroup(self, name, **kwargs):
-        group = Group(self, name, **kwargs)
-        self.groups[name] = group
+        index = len(self._groups)
+        group = Group(self, index, name, **kwargs)
+        self._groups[name] = group
         return group
 
     def calc_ip_by_node_id(self, node_id):
@@ -44,6 +76,34 @@ class Inventory:
 
         return str(self._ipv6_subnet.network_address) + ':'.join(re.findall(r'.{4}', eui64))
 
+    def getChannel(self, band=24, group_i = 0, host_i = 0):
+        # get Radio specifical variables
+        channel_default = None 
+        channel_auto_enabled = self._radio24_channel_auto_enabled
+        channel_auto_list = self._radio24_channel_auto_list
+        if "radio24_channel" in self._inventory_vars:
+            channel_default = self._inventory_vars["radio24_channel"]
+
+        if band == 5:
+          channel_auto_enabled = self._radio5_channel_auto_enabled
+          channel_auto_list = self._radio5_channel_auto_list
+          if "radio5_channel" in self._inventory_vars:
+            channel_default = self._inventory_vars["radio5_channel"]
+
+        ##
+        # Generic Part
+        #
+        # index by host_i + group_i
+        # to a little bit more random
+        ##
+        if not channel_auto_enabled:
+            return channel_default
+        channel_count = len(channel_auto_list)
+        channel_index = ((host_i+group_i) % channel_count)
+        return channel_auto_list[channel_index]
+
+
+
     def data(self):
         data = {
             "_meta": {
@@ -52,7 +112,7 @@ class Inventory:
         }
         hosts_vars = {}
 
-        for name, group in self.groups.items():
+        for name, group in self._groups.items():
             hosts = []
 
             for (host, origin_hostvars) in group.hosts():
@@ -72,8 +132,9 @@ class Inventory:
         return jsondumps(self.data(), **kwargs)
 
 class Group:
-    def __init__(self, inventory, name, ignore=False, geo_latitude=None,geo_longitude=None):
+    def __init__(self, inventory, index, name, ignore=False, geo_latitude=None,geo_longitude=None):
         self._inventory = inventory
+        self._index = index
         self._name = name
         self._geo_latitude = geo_latitude
         self._geo_longitude = geo_longitude
@@ -88,7 +149,13 @@ class Group:
 
         hostCount = len(self._hosts)
 
-        for (i, (node_id, origin_data)) in enumerate(self._hosts):
+        ignoreCount = 0
+
+        for (enumI, (node_id, origin_data)) in enumerate(self._hosts):
+            if "ignore" in origin_data and origin_data["ignore"]:
+                ignoreCount+=1
+                continue
+            i = enumI-ignoreCount
             data = origin_data.copy()
 
             # calc ip address for SSH by node_id
@@ -120,6 +187,16 @@ class Group:
                 elif hostCount == 1:
                   data["geo_latitude"] = self._geo_latitude
                   data["geo_longitude"] = self._geo_longitude
+
+            if not "radio24_channel" in data:
+                channel = self._inventory.getChannel(band=24, group_i = self._index, host_i = i)
+                if channel is not None:
+                    data["radio24_channel"] = channel
+
+            if not "radio5_channel" in data:
+                channel = self._inventory.getChannel(band=5, group_i = self._index, host_i = i)
+                if channel is not None:
+                    data["radio5_channel"] = channel
 
             hosts.append((node_id, data))
         return hosts
