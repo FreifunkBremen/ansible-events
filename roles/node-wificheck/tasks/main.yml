@@ -1,0 +1,11 @@
+# restart respondd if not running
+---
+- name: check
+  raw: "iw dev | grep -c ssid"
+  register: out
+  changed_when: false
+
+- name: "dump"
+  debug:
+    msg: "found only {{ out.stdout_lines[0] }} expected {{ node_wificheck_ssid_count }}"
+  failed_when: "( out.stdout_lines[0] | int ) != node_wificheck_ssid_count"

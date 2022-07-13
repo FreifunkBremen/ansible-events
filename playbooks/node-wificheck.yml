@@ -1,0 +1,6 @@
+# ansible-playbook playbooks/nodes.yml -i events
+---
+- hosts: all
+  gather_facts: no
+  roles:
+  - node-wificheck
