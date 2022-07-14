@@ -197,7 +197,7 @@ grp = inv.newGroup("Pappinale",
         geo_longitude=8.814119824)
 grp.addNode("18d6c7f9e1fc") # N0052
 grp.addNode("60e327add40c") # N0062
-grp.addNode("f09fc2ab7759",
+grp.addNode("f09fc2a97759",
         node_name="Pappinale-ac-mesh")
 
 # Box B0015
