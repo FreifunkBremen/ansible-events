@@ -15,18 +15,21 @@ inv = nodes.Inventory(
         # to hostvars
         ##
         node_name_suffix="breminale",
-        syslog="fd00:42:100::10",
+        # syslog="fd00:42:100::10",
+        syslog="2a00:c380:c100:3b10::10",
         syslog_port="1514",
         vpn = [],
         ## WIFI
         radio24_txpower = 0,
-        radio5_txpower = 0,
+        radio5_txpower = 22,
 
         radio24_channel = 5,
         radio5_channel = 48,
 
         radio24_channel_auto_enabled=True,
         radio5_channel_auto_enabled=True,
+
+        node_wificheck_ssid_count = 3,
 
         ## SSIDs
         radio24_client_disabled = 0,
@@ -253,6 +256,13 @@ grp = inv.newGroup("DirtyLost",
 
 
 
+# --- defekt und lost
+# kA was das für einer ist und wo
+grp.addNode("f8e829c07c9e")
+# von flut links -> falsche NodeID, wsl. siehe Defekt RAppelt
+grp.addNode("ca6540353b6c")
+# Boje nr. 2 von Frank - defekter reset-knopf - mit ffhb software (nicht umflashbar durch Knopf) - findet geno am Do nicht mehr im bauwagen
+grp.addNode("")
 
 #---------------
 # im Bauwagen:
@@ -262,14 +272,19 @@ grp = inv.newGroup("DirtyImBauwagen",
         ignore=True)
 
 
-# Defekt ?
-grp.addNode("f8e829c07c9e")
-# von flut links
-grp.addNode("ca6540353b6c")
+# Defekt:
+grp.addNode("d46e0e366a14") # N0057
+grp.addNode("7882a026d58c") # RAppelt - 788A2026D58C-55Fbpv - beschriftet mit 2202 ...
+
 
 # Einzeln
 # -- archer
-
+grp.addNode("18d6c7fcf075") # N0047
+grp.addNode("d46e0e290494") # N0042
+grp.addNode("14cc2047266e") # N0035
+grp.addNode("18d6c7617875") # N0058
+grp.addNode("18d6c7fcdd25") # N0046
+grp.addNode("60e32788ab1f") # In grünen Karton (vom Hackerspace?)
 
 # Boxen
 

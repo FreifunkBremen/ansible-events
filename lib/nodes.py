@@ -107,9 +107,9 @@ class Inventory:
 
         channel_count = len(channel_auto_list)
 
-        channel_index = host_i % channel_count
-        if band == 5:
-          channel_index = (group_i * 10 + host_i) % channel_count
+        # channel_index = host_i % channel_count
+        # if band == 5:
+        channel_index = (group_i * 10 + host_i) % channel_count
 
         return channel_auto_list[channel_index]
 
