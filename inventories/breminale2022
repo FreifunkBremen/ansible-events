@@ -10,7 +10,7 @@ inv = nodes.Inventory(
         # default
         ##
         ipv6_subnet="fd00:42:100::/64",
-        radius=0.00003,
+        radius=0.00002,
         ##
         # to hostvars
         ##
@@ -20,7 +20,7 @@ inv = nodes.Inventory(
         syslog_port="1514",
         vpn = [],
         ## WIFI
-        radio24_txpower = 0,
+        radio24_txpower = 10,
         radio5_txpower = 22,
 
         radio24_channel = 5,
@@ -64,26 +64,29 @@ grp.addNode("788a2026d3ed",
 grp = inv.newGroup("Flut",
         geo_latitude=53.068989488,
         geo_longitude=8.820484277)
-# Broken - lets disable
 grp.addNode("788a2026d581", # RAppelt
 	node_name="Flut-buehne-links-ac-mast",
 	geo_latitude=53.068997179,
 	geo_longitude=8.820373666)
 grp.addNode("60e3274fdac3",
-	node_name="Flut-buehne") # N0034
+	node_name="Flut-buehne",
+	geo_latitude=53.069013457,
+	geo_longitude=8.820528835) # N0034
 grp.addNode("f09fc2a977c2",
 	node_name="flut-buehne-rechts-ac-mesh",
-	geo_latitude=53.068998783,
-	geo_longitude=8.820542756)
+	geo_latitude=53.068949798,
+	geo_longitude=8.820602596)
 
 # Box B0014
 grp = inv.newGroup("FlutBackstage",
-        geo_latitude=53.069013877,
-	geo_longitude=8.820739243)
+        geo_latitude=53.068940934,
+	geo_longitude=8.820916414)
 grp.addNode("d46e0e3601ec") # N0041
 grp.addNode("18d6c7867735") # N0049
-grp.addNode("f09fc2a97715",
-	node_name="NebenFlut-ac-mesh") # N0103 // 7715
+grp.addNode("f09fc2a97715", # N0103 // 7715
+	node_name="NebenFlut-ac-mesh",
+        geo_latitude=53.068854713,
+        geo_longitude=8.821128309)
 
 ####
 #
