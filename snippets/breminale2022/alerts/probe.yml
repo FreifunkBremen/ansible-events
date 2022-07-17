@@ -1,0 +1,16 @@
+groups:
+- name: "Ping-Probes"
+  rules:
+  - alert: "Ping: Backbone"
+    expr: 'probe_success{group="backbone"} == 0'
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "[{{ $labels.type }}]: {{ $labels.hostname }} ({{ $labels.instance }}) is down"
+
+  - alert: "Ping: Nodes"
+    expr: 'probe_success{group!="backbone"} == 0'
+    for: 1m
+    annotations:
+      summary: "[{{ $labels.type }}{{ $labels.owner }}]: {{ $labels.hostname }} ({{ $labels.instance }}) is down"

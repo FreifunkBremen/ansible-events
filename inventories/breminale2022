@@ -113,7 +113,7 @@ grp.addNode("d46e0e28f8cd")
 grp = inv.newGroup("Breminale-Buero",
 	geo_latitude=53.069605721,
 	geo_longitude=8.818560094)
-grp.addNode("60e327a65b09") # ? (Das ist der alte von den 3M-Brettern
+grp.addNode("60e327a65b09") # N0074 (Das ist der alte von den 3M-Brettern)
 
 # MitteLichtmast
 grp = inv.newGroup("MitteLichtmast",

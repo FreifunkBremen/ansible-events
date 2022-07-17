@@ -1,0 +1,18 @@
+---
+- labels:
+    group: backbone
+    type: "switch"
+    hostname: "bauwagen-poe-tplink"
+    latitude: "53.069581438"
+    longitude: "8.818759033"
+  targets:
+  - "10.100.15.5"
+
+- labels:
+    group: backbone
+    type: "switch"
+    hostname: "bauwagen-poe-passiv"
+    latitude: "53.069581438"
+    longitude: "8.818759033"
+  targets:
+  - "10.100.15.6"

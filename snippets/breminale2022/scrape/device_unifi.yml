@@ -1,0 +1,186 @@
+---
+#- labels:
+#    group: backbone
+#    type: "rifu"
+#    id: "powerbeam-schwimmverein"
+#    ssid: "noc2bremen10"
+#    ap: "true"
+#    hostname: "PowerBeam am Bauwagen"
+#    latitude: "53.069545334"
+#    longitude: "8.818831475"
+#  targets:
+#  - "10.100.15.10"
+#
+#- labels:
+#    group: backbone
+#    type: "rifu"
+#    id: "powerbeam-schwimmverein"
+#    ssid: "noc2bremen10"
+#    hostname: "PowerBeam am Schwimmverein"
+#    latitude: "53.067580787"
+#    longitude: "8.817519101"
+#  targets:
+#  - "10.100.15.11"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-schleuse-gastro-3m"
+    ssid: "bauwagen2schleuse"
+    hostname: "Bauwagen -> Schleuse"
+    latitude: "53.06955495544695"
+    longitude: "8.818824961781502"
+  targets:
+  - "10.100.15.12"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-schleuse-gastro-3m"
+    ssid: "bauwagen2schleuse"
+    hostname: "Schleuse -> Bauwagen"
+    latitude: "53.069778966"
+    longitude: "8.815507740"
+  targets:
+  - "10.100.15.13"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-flut"
+    ssid: "bauwagen2flut"
+    hostname: "Bauwagen -> Flut"
+    latitude: "53.06954810618017"
+    longitude: "8.81884977221489"
+  targets:
+  - "10.100.15.14"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "schleuse-laterne"
+    ssid: "schleuse2laterne"
+    ap: "true"
+    hostname: "Schleuse -> Laterne"
+    latitude: "53.069804751"
+    longitude: "8.815407157"
+  targets:
+  - "10.100.15.15"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "schleuse-laterne"
+    ssid: "schleuse2laterne"
+    hostname: "Laterne -> Schleuse"
+    latitude: "53.070897391"
+    longitude: "8.812959641"
+  targets:
+  - "10.100.15.16"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-flut"
+    ssid: "bauwagen2flut"
+    hostname: "Flut -> Bauwagen"
+    latitude: "53.069015069"
+    longitude: "8.820437640"
+  targets:
+  - "10.100.15.17"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    ssid: "bauwagen2schleuse"
+    id: "bauwagen-schleuse-gastro-3m"
+    hostname: "Gastro -> Bauwagen"
+    latitude: "53.069865011"
+    longitude: "8.815895840"
+  targets:
+  - "10.100.15.18"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    ssid: "noc2radiobremen"
+    ap: "true"
+    hostname: "Bauwagen -> RadioBremen"
+    latitude: "53.06955495544695"
+    longitude: "8.818824961781502"
+  targets:
+  - "10.100.15.19"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-radio-licht-x"
+    ssid: "noc2radiobremen"
+    hostname: "RadioBremen -> Bauwagen"
+    latitude: "53.069333361"
+    longitude: "8.817758113"
+  targets:
+  - "10.100.15.20"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    ssid: "bauwagen2flut"
+    hostname: "Neuland -> Bauwagen"
+    latitude: "53.068954633"
+    longitude: "8.821168542"
+  targets:
+  - "10.100.15.21"
+
+- labels:
+    group: backbone
+    type: "rifu"
+#    id: "bauwagen-radio-licht-x"
+    hostname: "MitteLichtmast -> x"
+    latitude: "53.069336584"
+    longitude: "8.818810880"
+  targets:
+  - "10.100.15.22"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-schleuse-gastro-3m"
+    ssid: "schleuse2laterne"
+    hostname: "3mBretter -> Schleuse"
+    latitude: "53.070758961"
+    longitude: "8.812652116"
+  targets:
+  - "10.100.15.23"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen-schleuse-gastro-3m"
+    ssid: "schleuse2laterne"
+    hostname: "FahnenMast -> Schleuse"
+    latitude: "53.071097221"
+    longitude: "8.811461627"
+  targets:
+  - "10.100.15.24"
+
+#- labels:
+#    group: backbone
+#   type: "rifu"
+#    id: "bauwagen+mittelichtmast"
+#    hostname: "MitteLichtmast ->"
+#    latitude: "53.070763633"
+#    longitude: "8.812568039"
+#  targets:
+#  - "10.100.15.25"
+
+- labels:
+    group: backbone
+    type: "rifu"
+    id: "bauwagen+mittelichtmast"
+    ssid: "bauwagen2schleuse"
+    hostname: "Eis -> Bauwagen"
+    latitude: "53.06958476988959"
+    longitude: "8.817113041877747"
+  targets:
+  - "10.100.15.26"

@@ -1,0 +1,9 @@
+---
+- labels:
+    group: backbone
+    type: "router"
+    hostname: "router"
+    latitude: "53.069581438"
+    longitude: "8.818759033"
+  targets:
+  - "10.100.0.1"
