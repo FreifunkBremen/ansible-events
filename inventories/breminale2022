@@ -99,6 +99,7 @@ grp.addNode("f09fc2a97715", # N0103 // 7715
 grp = inv.newGroup("Kueche",
 	geo_latitude=53.069418364,
 	geo_longitude=8.819662999)
+grp.addNode("d46e0e290494") # N0042
 grp.addNode("788a2026d6d2",
 	node_name="Kueche-ac-mesh") # D6D2 Ralf Appe1l
 
@@ -108,6 +109,11 @@ grp = inv.newGroup("Bauwagen",
         geo_longitude=8.818759033)
 grp.addNode("d46e0e366a3e")
 grp.addNode("d46e0e28f8cd")
+
+grp = inv.newGroup("Breminale-Buero",
+	geo_latitude=53.069605721,
+	geo_longitude=8.818560094)
+grp.addNode("60e327a65b09") # ? (Das ist der alte von den 3M-Brettern
 
 # MitteLichtmast
 grp = inv.newGroup("MitteLichtmast",
@@ -225,7 +231,7 @@ grp = inv.newGroup("3MeterBretter",
         geo_latitude=53.070794881,
         geo_longitude=8.812479189)
 grp.addNode("18d6c7e8caa2") # N0069
-grp.addNode("60e327a65b09") # N0074
+grp.addNode("18d6c7fcf075") # N0047
 grp.addNode("f09fc2a97763", # N0106 / 7763
         node_name="3MBretter-ac-mesh-rechts",
         geo_latitude=53.070817629,
@@ -237,7 +243,8 @@ grp = inv.newGroup("MuchasMas",
         geo_longitude=8.81146)
 
 grp.addNode("18d6c7f9c174") # N0060
-grp.addNode("60e32788e32f", # N0055
+grp.addNode("60e32788e32f") # N0055
+grp.addNode("f09fc2a97863",
         node_name="MuchasMas-ac-mesh-1") # 7863
 grp.addNode("788a2026d548",
         node_name="MuchasMas-ac-mesh-2") # D548 RAppelt
@@ -260,11 +267,13 @@ grp = inv.newGroup("DirtyLost",
 
 
 # --- defekt und lost
-# kA was das für einer ist und wo
+# kA was das fuer Einer ist und wo
 grp.addNode("f8e829c07c9e")
 # von flut links -> falsche NodeID, wsl. siehe Defekt RAppelt
 grp.addNode("ca6540353b6c")
-# Boje nr. 2 von Frank - defekter reset-knopf - mit ffhb software (nicht umflashbar durch Knopf) - findet geno am Do nicht mehr im bauwagen
+# Boje nr. 2 von Frank - defekter reset-knopf - mit ffhb software (nicht umflashbar durch Knopf)i
+#  - findet geno am Do nicht mehr im bauwagen
+#  - hat frank bereits mit nach hause genommen
 grp.addNode("")
 
 #---------------
@@ -282,12 +291,10 @@ grp.addNode("7882a026d58c") # RAppelt - 788A2026D58C-55Fbpv - beschriftet mit 22
 
 # Einzeln
 # -- archer
-grp.addNode("18d6c7fcf075") # N0047
-grp.addNode("d46e0e290494") # N0042
 grp.addNode("14cc2047266e") # N0035
 grp.addNode("18d6c7617875") # N0058
 grp.addNode("18d6c7fcdd25") # N0046
-grp.addNode("60e32788ab1f") # In grünen Karton (vom Hackerspace?)
+grp.addNode("60e32788ab1f") # In gruener Karton (vom Hackerspace?)
 
 # Boxen
 
