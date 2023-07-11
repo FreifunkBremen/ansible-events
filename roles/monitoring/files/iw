@@ -4,4 +4,5 @@ echo '<<<iw:sep(0)>>>'
 iw dev
 for DEV in /sys/class/net/wlan?; do
     iw dev "${DEV##*/}" survey dump
+    iw dev "${DEV##*/}" station dump
 done
