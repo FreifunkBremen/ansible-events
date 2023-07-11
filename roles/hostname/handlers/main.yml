@@ -1,0 +1,5 @@
+---
+- name: restart host
+  reboot:
+    reboot_timeout: 120
+    reboot_command: /sbin/reboot

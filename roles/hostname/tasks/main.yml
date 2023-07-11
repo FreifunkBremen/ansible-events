@@ -5,9 +5,13 @@
     key: 'system.@system[0]'
     value:
       hostname: '{{ inventory_hostname }}'
+  notify:
+  - restart host
 
 - name: Set running hostname
   copy:
     content: |
       {{ inventory_hostname }}
     dest: /proc/sys/kernel/hostname
+  notify:
+  - restart host
