@@ -1,0 +1,13 @@
+- name: Set persistent hostname
+  uci:
+    command: set
+    autocommit: yes
+    key: 'system.@system[0]'
+    value:
+      hostname: '{{ inventory_hostname }}'
+
+- name: Set running hostname
+  copy:
+    content: |
+      {{ inventory_hostname }}
+    dest: /proc/sys/kernel/hostname

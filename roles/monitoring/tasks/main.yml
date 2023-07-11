@@ -1,0 +1,28 @@
+- name: Install CheckMK agent
+  command: wget -qO /usr/bin/check_mk_agent https://monitoring.ffhb.de/ffhb/check_mk/local/agents/check_mk_agent.openwrt
+  args:
+    creates: /usr/bin/check_mk_agent
+
+- name: Make CheckMK agent executable
+  file:
+    path: /usr/bin/check_mk_agent
+    mode: '0755'
+
+- name: Create CheckMK agent plugin directory
+  file:
+    path: /usr/lib/check_mk_agent/plugins
+    state: directory
+
+- name: Copy CheckMK agent plugins
+  copy:
+    src: '{{ item }}'
+    dest: /usr/lib/check_mk_agent/plugins/
+    mode: '0755'
+  loop:
+  - iw
+
+- name: Allow monitoring SSH key
+  lineinfile:
+    line: '{{ lookup("file", "authorized_keys") }}'
+    path: /etc/dropbear/authorized_keys
+    create: true

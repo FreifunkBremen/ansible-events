@@ -1,0 +1,7 @@
+- hosts: openwrt
+  gather_facts: no
+  roles:
+  - gekmihesg.openwrt
+  - monitoring
+  - hostname
+  - client_isolation
