@@ -5,3 +5,4 @@
   - monitoring
   - hostname
   - client_isolation
+  - disable_ipv6

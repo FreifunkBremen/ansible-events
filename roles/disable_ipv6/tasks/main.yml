@@ -1,0 +1,14 @@
+- name: Create 99-disable-lan-ipv6.conf
+  # Otherwise the sysctl module fails
+  file:
+    path: /etc/sysctl.d/99-disable-lan-ipv6.conf
+    state: touch
+    mode: '0644'
+  changed_when: False
+
+- name: Disable IPv6 on LAN interface
+  # we're no router anyway
+  sysctl:
+    name: net.ipv6.conf.br-lan.disable_ipv6
+    value: 1
+    sysctl_file: /etc/sysctl.d/99-disable-lan-ipv6.conf
