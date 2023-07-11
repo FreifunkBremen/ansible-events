@@ -1,8 +1,7 @@
 #!/bin/sh
 
-echo '<<<iw>>>'
+echo '<<<iw:sep(0)>>>'
 iw dev
-echo '<<<iw_survey>>>'
 for DEV in /sys/class/net/wlan?; do
     iw dev "${DEV##*/}" survey dump
 done
