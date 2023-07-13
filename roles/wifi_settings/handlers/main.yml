@@ -1,0 +1,4 @@
+- name: reload wifi
+  nohup:
+    command: /sbin/wifi reload
+    delay: 1

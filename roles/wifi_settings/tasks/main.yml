@@ -1,0 +1,28 @@
+- name: configure wifi interface
+  uci:
+    command: set
+    key: '{{ item }}'
+    value:
+      country: 'DE'
+  loop:
+  - wireless.radio0
+  - wireless.radio1
+
+- name: configure channel width 2,4
+  uci:
+    command: set
+    key: wireless.radio1
+    value:
+      htmode: 'HT20'
+
+- name: configure channel width 5
+  uci:
+    command: set
+    key: wireless.radio0
+    value:
+      htmode: 'VHT20'
+
+- name: commit changes
+  uci:
+    command: commit
+  notify: reload wifi
