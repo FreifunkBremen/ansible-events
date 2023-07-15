@@ -22,6 +22,20 @@
     value:
       htmode: 'VHT20'
 
+- name: Configure channel
+  uci:
+    command: set
+    key: wireless.radio0
+    value:
+      channel: "{{ auto_channel_5 }}"
+
+- name: Configure channel
+  uci:
+    command: set
+    key: wireless.radio1
+    value:
+      channel: "{{ auto_channel_24 }}"
+
 - name: commit changes
   uci:
     command: commit
