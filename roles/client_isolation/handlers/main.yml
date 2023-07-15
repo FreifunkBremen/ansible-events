@@ -1,2 +1,5 @@
 - name: Reload WiFi
   command: wifi
+
+- name: reload nftables
+  command: nft -f /etc/nftables.conf

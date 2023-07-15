@@ -8,6 +8,7 @@
   copy:
     src: nftables.conf
     dest: /etc/nftables.conf
+  notify: reload nftables
 
 - name: Load nftables rules on boot
   lineinfile:
