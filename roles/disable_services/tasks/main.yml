@@ -1,17 +1,17 @@
 - name: Disable dnsmasq
-  command: "/etc/init.d/dnsmasq {{ item }}"
-  loop:
-    - stop
-    - disable
+  service:
+    name: dnsmasq
+    state: stopped
+    enabled: no
 
 - name: Disable odhcpd
-  command: "/etc/init.d/odhcpd {{ item }}"
-  loop:
-    - stop
-    - disable
+  service:
+    name: odhcpd
+    state: stopped
+    enabled: no
 
 - name: Disable uhttpd
-  command: "/etc/init.d/uhttpd {{ item }}"
-  loop:
-    - stop
-    - disable
+  service:
+    name: uhttpd
+    state: stopped
+    enabled: no
