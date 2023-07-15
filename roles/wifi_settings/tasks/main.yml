@@ -36,6 +36,16 @@
     value:
       channel: "{{ auto_channel_24 }}"
 
+- name: Set maxassoc on wireless interfaces
+  uci:
+    command: set
+    key: '{{ item }}'
+    value:
+      maxassoc: 80
+  loop:
+  - wireless.default_radio0
+  - wireless.default_radio1
+
 - name: commit changes
   uci:
     command: commit
